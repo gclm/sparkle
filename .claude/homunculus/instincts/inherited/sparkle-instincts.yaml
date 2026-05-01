@@ -1,0 +1,405 @@
+# Instincts generated from https://github.com/gclm/sparkle
+# Generated: 2026-05-01T05:13:56.639Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: sparkle-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Commit Length
+
+## Action
+
+Keep commit messages concise (~31 characters)
+
+## Evidence
+
+- Average commit message length: 31 chars
+- Based on 43 commits
+
+---
+id: sparkle-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: sparkle-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: sparkle-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: sparkle-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: main, renderer, shared
+
+---
+id: sparkle-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: sparkle-workflow-service-lifecycle-or-auth-update
+trigger: "when doing service lifecycle or auth update"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Workflow Service Lifecycle Or Auth Update
+
+## Action
+
+Follow the service-lifecycle-or-auth-update workflow:
+1. Modify src/main/service/api.ts and/or src/main/service/auth-store.ts for service logic or auth changes
+2. Update related service manager or key files (src/main/service/manager.ts, src/main/service/key.ts)
+3. Adjust installer or platform scripts if needed (build/installer.nsh, build/linux/postinst, build/pkg-scripts/postinstall, etc.)
+4. Update utility files for IPC or directory handling (src/main/utils/ipc.ts, src/main/utils/dirs.ts, src/main/utils/encrypt.ts)
+5. Update renderer files if UI reflects service/auth state (src/renderer/src/components/mihomo/service-modal.tsx, etc.)
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: src/main/service/api.ts, src/main/service/auth-store.ts, src/main/service/manager.ts
+
+---
+id: sparkle-workflow-log-system-enhancement
+trigger: "when doing log system enhancement"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Workflow Log System Enhancement
+
+## Action
+
+Follow the log-system-enhancement workflow:
+1. Update main process log logic (src/main/utils/log.ts, src/main/core/mihomoApi.ts, src/main/core/manager.ts, src/main/utils/ipc.ts)
+2. Update shared types if log data shape changes (src/shared/types/app.d.ts, src/shared/types/controller.d.ts)
+3. Update renderer components/pages for log display or settings (src/renderer/src/pages/logs.tsx, src/renderer/src/components/mihomo/log-setting.tsx, src/renderer/src/utils/mihomo-log-store.ts, etc.)
+4. Update utility files for IPC or log store if needed (src/renderer/src/utils/ipc.ts, src/renderer/src/utils/mihomo-log-store.ts)
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: src/main/utils/log.ts, src/main/core/mihomoApi.ts, src/main/core/manager.ts
+
+---
+id: sparkle-workflow-installer-or-platform-script-update
+trigger: "when doing installer or platform script update"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Workflow Installer Or Platform Script Update
+
+## Action
+
+Follow the installer-or-platform-script-update workflow:
+1. Edit installer scripts (build/installer.nsh, build/linux/postinst, build/linux/preinst, build/pkg-scripts/postinstall, build/pkg-scripts/preinstall)
+2. Update electron-builder or related config if needed (electron-builder.yml)
+3. Update main process files if install logic affects runtime (src/main/core/manager.ts, src/main/resolve/autoUpdater.ts, src/main/utils/ipc.ts)
+4. Update renderer utils if IPC contract changes (src/renderer/src/utils/ipc.ts)
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: build/installer.nsh, build/linux/postinst, build/linux/preinst
+
+---
+id: sparkle-workflow-feature-or-setting-addition-with-shared-types
+trigger: "when doing feature or setting addition with shared types"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/gclm/sparkle
+---
+
+# Sparkle Workflow Feature Or Setting Addition With Shared Types
+
+## Action
+
+Follow the feature-or-setting-addition-with-shared-types workflow:
+1. Update or add logic in main process (src/main/core/manager.ts, src/main/utils/template.ts, src/main/sys/sysproxy.ts, etc.)
+2. Update shared types to reflect new fields or settings (src/shared/types/app.d.ts)
+3. Update renderer UI to surface new feature/setting (src/renderer/src/pages/*.tsx, src/renderer/src/components/**/*.tsx, src/renderer/src/utils/*.ts)
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: src/main/core/manager.ts, src/main/utils/template.ts, src/main/sys/sysproxy.ts
+
+---
+id: sparkle-instinct-naming-conventions
+trigger: "When creating or renaming files, functions, classes, or constants"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Naming Conventions
+
+## Action
+
+Use camelCase for files and functions, PascalCase for classes, and SCREAMING_SNAKE_CASE for constants
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions
+- Consistent usage in files and commit examples
+
+---
+id: sparkle-instinct-import-style
+trigger: "When importing modules within the codebase"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Import Style
+
+## Action
+
+Use relative imports (e.g., './utils/helper')
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+- Seen in src/main/utils/ipc.ts and other files
+
+---
+id: sparkle-instinct-export-style
+trigger: "When exporting functions, classes, or constants"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Export Style
+
+## Action
+
+Use named exports instead of default exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+- Seen in multiple TypeScript source files
+
+---
+id: sparkle-instinct-testing-location
+trigger: "When adding or updating tests"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Testing Location
+
+## Action
+
+Place tests in a separate directory, not mixed with source files
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation
+- No test files in srcLayout
+
+---
+id: sparkle-instinct-commit-format
+trigger: "When writing a commit message"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Commit Format
+
+## Action
+
+Use a short, imperative, freeform message, optionally with a type prefix (e.g., 'feat(rule): add stats info')
+
+## Evidence
+
+- Seen in commit examples: 'feat(rule): add stats info (#191)', 'adjust style', etc.
+
+---
+id: sparkle-instinct-service-lifecycle-or-auth-update
+trigger: "When someone needs to update service startup, authentication, or lifecycle handling (e.g., for new OS support, bugfixes, or new service features)"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Service Lifecycle Or Auth Update
+
+## Action
+
+Modify service logic/auth files, update manager/key files, adjust installer scripts, update IPC/utility files, and update renderer UI if needed
+
+## Evidence
+
+- Workflow: service-lifecycle-or-auth-update
+- Commit and file patterns in workflow definition
+
+---
+id: sparkle-instinct-log-system-enhancement
+trigger: "When someone wants to add, improve, or fix log system features, including settings, real-time updates, or log storage"
+confidence: 0.88
+domain: workflow
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Log System Enhancement
+
+## Action
+
+Update main log logic, shared types, renderer log UI/components, and IPC/log store utilities
+
+## Evidence
+
+- Workflow: log-system-enhancement
+- Commit and file patterns in workflow definition
+
+---
+id: sparkle-instinct-installer-or-platform-script-update
+trigger: "When someone needs to fix or enhance installation/uninstallation for a specific platform or update how binaries/services are handled during install"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Installer Or Platform Script Update
+
+## Action
+
+Edit installer scripts, update electron-builder/config, update main process install logic, and update renderer IPC utils if needed
+
+## Evidence
+
+- Workflow: installer-or-platform-script-update
+- Commit and file patterns in workflow definition
+
+---
+id: sparkle-instinct-feature-or-setting-addition-with-shared-types
+trigger: "When someone adds a new setting, feature, or option that needs to be reflected in both backend and frontend, with type safety"
+confidence: 0.86
+domain: workflow
+source: repo-analysis
+source_repo: gclm/sparkle
+---
+
+# Sparkle Instinct Feature Or Setting Addition With Shared Types
+
+## Action
+
+Update/add main logic, update shared types, and update renderer UI/components/utilities
+
+## Evidence
+
+- Workflow: feature-or-setting-addition-with-shared-types
+- Commit and file patterns in workflow definition
+
